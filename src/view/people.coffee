@@ -1,23 +1,19 @@
-'use strict';
-
 define ['jquery', 'underscore', 'backbone', 'view/user'], ( $, _, Backbone, AppUserView ) ->
+	'use strict'
+
 	#  Вьюха для списка(коллекции) пользователей
 
 	Backbone.View.extend
-
 		tagName : 'ul'
-
 
 		id : 'userList'
 
-
 		initialize : () ->
-			Backbone.on 'deselect:all', this.deSelectAll, @
-
+			Backbone.on 'deselect:all', @deSelectAll, @
 
 		render : () ->
 
-			@.collection.each( ( userModel ) ->
+			@collection.each( ( userModel ) ->
 				userView = new AppUserView
 					model : userModel
 
@@ -25,7 +21,6 @@ define ['jquery', 'underscore', 'backbone', 'view/user'], ( $, _, Backbone, AppU
 			@ )
 
 			@
-
 
 		deSelectAll : () ->
 			@$('.selected').removeClass 'selected'

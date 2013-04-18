@@ -1,5 +1,3 @@
-'use strict';
-
 define [
 	'jquery'
 	'backbone'
@@ -9,9 +7,9 @@ define [
 	'view/user_edit'
 	'view/page404'
 	], ( $, Backbone, userCollectionCache, AppViewPeople, AppViewUserInfo, AppViewUserEdit, AppViewPage404 ) ->
+		'use strict'
 
 		Backbone.Router.extend
-
 			routes :
 				''              : 'index'
 				'users'         : 'index'
@@ -29,7 +27,6 @@ define [
 					$('body').html userCollectionView.render().el
 
 				Backbone.trigger 'deselect:all'
-
 
 			info : ( id ) ->
 				availability = userCollectionCache.some( ( userModel ) ->
@@ -51,7 +48,6 @@ define [
 				if !availability
 					@page404()
 
-
 			edit : ( id ) ->
 				availability = userCollectionCache.some( ( userModel ) ->
 
@@ -71,7 +67,6 @@ define [
 
 				if !availability
 					@page404()
-
 
 			page404 : () ->
 				new AppViewPage404().render()

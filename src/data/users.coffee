@@ -1,6 +1,5 @@
-'use strict';
-
-define [], () ->
+define () ->
+	'use strict'
 	[
 		{
 			id   : 7000

@@ -1,7 +1,6 @@
 'use strict'
 
 requirejs.config
-
 	urlArgs : + new Date()
 
 	paths : 
