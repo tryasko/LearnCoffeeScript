@@ -1,0 +1,55 @@
+<html><head>
+	<title>Список пользователей</title>
+
+	<meta charset="utf-8">
+
+	<link href="css/style.css" rel="stylesheet">
+
+	<!-- Шаблон для пользователя -->
+	<script type="text/template" id="userTemplate">
+		<a href="#info/user/<%= data.id %>"><img src="<%= data.foto %>"><div><%= data.name %></div></a>
+	</script>
+
+	<!-- Шаблон для информации о пользователе -->
+	<script type="text/template" id="userInfoTemplate">
+		<div class="close" title="Закрыть окно с информацией о пользователе <%= data.name %>"><a href="index.html#users"></a></div>
+		<img src="<%= data.foto %>">
+		<div><div class="title">Имя :</div>     <div><%= data.name %></div></div>
+		<div><div class="title">Возраст :</div> <div><%= data.age %></div></div>
+		<div><div class="title">Работа :</div>  <div><%= data.job %></div></div>
+		<div><div class="title">Пол :</div>     <div><%= data.sex %></div></div>
+		<div><a href="#edit/user/<%= data.id %>"><button title="Редактировать информацию о пользователе <%= data.name %>">Редактировать</button></a></div></div>
+	</script>
+
+	<!-- Шаблон для редактирования информации о пользователе -->
+	<script type="text/template" id="userInfoEditTemplate">
+		<div class="close" title="Закрыть окно редактирования информации о пользователе <%= data.name %>. Все не сохраненные данные будут утеряны."><a href="index.html#users"></a></div>
+		<img src="<%= data.foto %>">
+		<div><div class="title">Имя :</div>     <div><input type="text" value="<%= data.name %>" class="user-name"></div></div>
+		<div><div class="title">Возраст :</div> <div><input type="number" value="<%= data.age %>" class="user-age"></div></div>
+		<div><div class="title">Работа :</div>  <div><input type="text" value="<%= data.job %>" class="user-job"></div></div>
+		<div><div class="title">Пол :</div>     <div>
+			<select class="user-sex">
+				<option>Мужской</option>
+				<option>Женский</option>
+				<option>Тестовый</option>
+			</select>
+		</div></div>
+		<div>
+			<button class="save" title="Сохранить изменеия и закрыть окно редактирования информации о пользователе <%= data.name %>.">Сохранить</button>
+			<a href="#info/user/<%= data.id %>"><button class="exit" title="Закрыть окно редактирования информации о пользователе <%= data.name %>. Все не сохраненные данные будут утеряны.">Отмена</button></a>
+		</div>
+	</script>
+
+	<!-- Шаблон для 404 страницы -->
+	<script type="text/template" id="page404Template">
+		<div id="page404">
+			<h1>404</h1>
+			<h3>ЗАПРАШИВАЕМАЯ СТРАНИЦА НЕ НАЙДЕНА</h3>
+			<a href="index.html#users">ПЕРЕЙДИТЕ НА ГЛАВНУЮ СТРАНИЦУ</a>
+		</div>
+	</script>
+
+</head><body>
+	<script data-main="js/main" src="js/lib/require.js"></script>
+</body></html>

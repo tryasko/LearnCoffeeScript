@@ -1,0 +1,119 @@
+html, body, ul, li, div {
+	margin : 0;
+	padding : 0;
+	border : 0;
+}
+
+#userList {
+	width: 300px;
+	height: 400px;
+	padding: 1px;
+	list-style: none;
+	overflow-y: scroll;
+	border: 1px solid #444;
+	border-radius: 5px;
+	position: absolute;
+	top: 100px;
+	left: 200px;
+}
+
+#userList .selected, #userList .selected:hover {
+	background-color: #ccc;
+}
+
+#userList li {
+	height: 64px;
+	width: 276px;
+	cursor: pointer;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+#userList li:hover {
+	background-color: #f0f7fa;
+}
+
+#userList li img {
+	width: 64px;
+	height: 64px;
+	float: left;
+}
+
+#userList li div {
+	height: 64px;
+	width: 206px;
+	font: 20px/64px Verdana;
+	text-align: center;
+	float: left;
+}
+
+
+#userInfo {
+	width: 260px;
+	height: 234px;
+	font: 16px/34px Verdana;
+	text-align: center;
+	position: absolute;
+	border: 1px solid #444;
+	border-radius: 5px;
+	top: 100px;
+	left: 520px;
+}
+
+#userInfo .close {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	cursor: pointer;
+	background: url('app/close.png');
+}
+
+#userInfo .close a {
+	display: block;
+	width: 16px;
+	height: 16px;
+}
+
+#userInfo img {
+	width: 64px;
+	height: 64px;
+}
+
+#userInfo div {
+	height: 34px;
+}
+
+#userInfo div div {
+	width: 120px;
+	padding-left: 10px;
+	text-align: left;
+	float: left;
+}
+
+#userInfo div .title {
+	text-align: right;
+}
+
+#userInfo div button {
+	cursor: pointer;
+}
+
+#userInfo div input {
+	width: 110px;
+}
+
+
+
+
+#page404 {
+	padding-top: 300px;
+
+	position: relative;
+	top: 100px;
+
+	text-align: center;
+
+	background: url(app/404.png) top center no-repeat;
+}
