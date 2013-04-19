@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['backbone'], function(Backbone) {
+define(['backbone', 'validator'], function(Backbone, Validator) {
   'use strict';
   var Model, _ref;
 
@@ -18,25 +18,43 @@ define(['backbone'], function(Backbone) {
       sex: 'Мужской'
     };
 
-    Model.prototype.validate = function(attrs) {
-      var errors;
-
-      errors = [];
-      if (!/^[А-Яа-я]{1,}$/.test(attrs.name)) {
-        errors.push('Введите свое имя кириллицей!');
-      }
-      if (attrs.age < 10 || attrs.age > 100) {
-        errors.push('Введите цифрами Ваш реальный возраст!');
-      }
-      if (!/^[А-Яа-я]{1,}$/.test(attrs.job)) {
-        errors.push('Введите профессию кириллицей!');
-      }
-      if (attrs.sex !== 'Мужской' && attrs.sex !== 'Женский') {
-        errors.push('Выберите правильно пол!');
-      }
-      if (errors.length) {
-        return errors;
-      }
+    Model.prototype.validation = {
+      name: [
+        {
+          required: true,
+          msg: 'Поле "Имя" не может быть пустым!'
+        }, {
+          pattern: /^[А-Яа-я]{1,}$/,
+          msg: 'Введите свое имя кириллицей!'
+        }
+      ],
+      age: [
+        {
+          required: true,
+          msg: 'Поле "Возраст" не может быть пустым!'
+        }, {
+          range: [10, 100],
+          msg: 'Вы не можете быть младше 10 и старше 100 лет!'
+        }
+      ],
+      job: [
+        {
+          required: true,
+          msg: 'Поле "Работа" не может быть пустым'
+        }, {
+          pattern: /^[А-Яа-я]{1,}$/,
+          msg: 'Введите профессию кириллицей!'
+        }
+      ],
+      sex: [
+        {
+          required: true,
+          msg: 'Поле "Пол" не может быть пустым'
+        }, {
+          oneOf: ['Мужской', 'Женский'],
+          msg: 'Выберите правильно пол!'
+        }
+      ]
     };
 
     return Model;

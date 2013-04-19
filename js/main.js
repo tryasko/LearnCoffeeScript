@@ -4,7 +4,8 @@
   paths: {
     'jquery': 'lib/jquery',
     'underscore': 'lib/underscore',
-    'backbone': 'lib/backbone'
+    'backbone': 'lib/backbone',
+    'validator': 'lib/backbone-validation-amd'
   },
   shim: {
     'jquery': {
@@ -16,6 +17,10 @@
     'backbone': {
       deps: ['jquery', 'underscore'],
       exports: 'Backbone'
+    },
+    'validator': {
+      deps: ['backbone'],
+      exports: 'Validator'
     }
   }
 });

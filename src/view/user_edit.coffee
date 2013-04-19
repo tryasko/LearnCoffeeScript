@@ -6,6 +6,9 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 	class View extends Backbone.View
 		id : 'userInfo'
 
+		initialize: ->
+			Backbone.Validation.bind @
+
 		template : _.template $('#userInfoEditTemplate').html()
 
 		render : ->
@@ -21,7 +24,7 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 		saveInfo : ->
 			newInfo =
 				name : @$('.user-name').val()
-				age  : parseInt @$('.user-age').val(), 10
+				age  : @$('.user-age').val()
 				job  : @$('.user-job').val()
 				sex  : @$('.user-sex').val()
 
@@ -32,12 +35,12 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 			else
 				@model.set
 					name : newInfo.name
-					age  : newInfo.age
+					age  : parseInt newInfo.age, 10
 					job  : newInfo.job
 					sex  : newInfo.sex
 
 				window.location.hash = '#info/user/' + @model.get('id')
 
 		showErrorValidate : ( errors ) ->
-			for error in errors
+			for key, error of errors
 				alert error
