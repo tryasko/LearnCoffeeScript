@@ -3,16 +3,15 @@ define ['jquery', 'underscore', 'backbone', 'view/user'], ( $, _, Backbone, AppU
 
 	#  Вьюха для списка(коллекции) пользователей
 
-	Backbone.View.extend
+	class View extends Backbone.View
 		tagName : 'ul'
 
 		id : 'userList'
 
-		initialize : () ->
+		initialize : ->
 			Backbone.on 'deselect:all', @deSelectAll, @
 
-		render : () ->
-
+		render : ->
 			@collection.each( ( userModel ) ->
 				userView = new AppUserView
 					model : userModel
@@ -22,5 +21,5 @@ define ['jquery', 'underscore', 'backbone', 'view/user'], ( $, _, Backbone, AppU
 
 			@
 
-		deSelectAll : () ->
+		deSelectAll : ->
 			@$('.selected').removeClass 'selected'

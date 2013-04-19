@@ -3,12 +3,12 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 
 	#  Вьюха для вывода информация о пользователе
 
-	Backbone.View.extend
+	class View extends Backbone.View
 		id : 'userInfo'
 
 		template : _.template $('#userInfoTemplate').html()
 
-		render : () ->
+		render : ->
 			@$el.html( @template
 				data : @model.toJSON()
 			)

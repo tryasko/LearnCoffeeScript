@@ -17,7 +17,7 @@ requirejs.config
 
 		'backbone' : 
 			deps : [
-				'jquery',
+				'jquery'
 				'underscore'
 			]
 

@@ -3,12 +3,12 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 
 	#  Вьюха для редактирования информации о пользователе
 
-	Backbone.View.extend
-		id : 'userInfo',
+	class View extends Backbone.View
+		id : 'userInfo'
 
 		template : _.template $('#userInfoEditTemplate').html()
 
-		render : () ->
+		render : ->
 			@$el.html( @template
 				data : @model.toJSON()
 			)
@@ -18,7 +18,7 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 		events :
 			'click .save' : 'saveInfo'
 
-		saveInfo : () ->
+		saveInfo : ->
 			newInfo =
 				name : @$('.user-name').val()
 				age  : parseInt @$('.user-age').val(), 10

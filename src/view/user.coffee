@@ -3,22 +3,22 @@ define ['jquery', 'underscore', 'backbone'], ( $, _, Backbone ) ->
 
 	#  Вьюха для одного пользователя
 
-	Backbone.View.extend
-		tagName : 'li',
+	class View extends Backbone.View
+		tagName : 'li'
 
 		template : _.template $('#userTemplate').html()
 
-		initialize : () ->
+		initialize : ->
 			@render()
-			@model.on 'change:name', @render, @
-			@model.on 'select:current', @select, @
+			@listenTo @model, 'change:name', @render, @
+			@listenTo @model, 'select:current', @select, @
 
-		render : () ->
+		render : ->
 			@$el.html( @template
 				data : @model.toJSON()
 			)
 
 			@
 
-		select : () ->
+		select : ->
 			@$el.addClass 'selected'

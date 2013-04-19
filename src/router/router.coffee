@@ -9,7 +9,7 @@ define [
 	], ( $, Backbone, userCollectionCache, AppViewPeople, AppViewUserInfo, AppViewUserEdit, AppViewPage404 ) ->
 		'use strict'
 
-		Backbone.Router.extend
+		class Router extends Backbone.Router
 			routes :
 				''              : 'index'
 				'users'         : 'index'
@@ -17,10 +17,10 @@ define [
 				'edit/user/:id' : 'edit'
 				'*path'         : 'page404'
 
-			index : () ->
+			index : ->
 				$('#userInfo').remove()
 
-				if !$('#userList').length
+				if not $('#userList').length
 					userCollectionView = new AppViewPeople
 						collection : userCollectionCache
 
@@ -31,7 +31,7 @@ define [
 			info : ( id ) ->
 				availability = userCollectionCache.some( ( userModel ) ->
 
-					if userModel.get('id') == + id
+					if userModel.get('id') is + id
 
 						userInfoView = new AppViewUserInfo
 							model : userModel
@@ -45,13 +45,13 @@ define [
 						true
 				@ )
 
-				if !availability
+				if not availability
 					@page404()
 
 			edit : ( id ) ->
 				availability = userCollectionCache.some( ( userModel ) ->
 
-					if userModel.get('id') == + id
+					if userModel.get('id') is + id
 
 						userInfoEdit = new AppViewUserEdit
 							model : userModel
@@ -65,8 +65,8 @@ define [
 						true
 				@ )
 
-				if !availability
+				if not availability
 					@page404()
 
-			page404 : () ->
+			page404 : ->
 				new AppViewPage404().render()

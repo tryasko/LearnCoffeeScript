@@ -1,23 +1,23 @@
 define ['backbone'], ( Backbone ) ->
 	'use strict'
 
-	Backbone.Model.extend
+	class Model extends Backbone.Model
 		defaults :
 			sex : 'Мужской'
 
 		validate : ( attrs ) ->
 			errors = []
 
-			if !/^[А-Яа-я]{1,}$/.test attrs.name
+			if not /^[А-Яа-я]{1,}$/.test attrs.name
 				errors.push 'Введите свое имя кириллицей!'
 
-			if attrs.age < 10 ||  attrs.age > 100
+			if attrs.age < 10 or attrs.age > 100
 				errors.push 'Введите цифрами Ваш реальный возраст!'
 
-			if !/^[А-Яа-я]{1,}$/.test attrs.job
+			if not /^[А-Яа-я]{1,}$/.test attrs.job
 				errors.push 'Введите профессию кириллицей!'
 
-			if attrs.sex != 'Мужской' && attrs.sex != 'Женский'
+			if attrs.sex isnt 'Мужской' and attrs.sex isnt 'Женский'
 				errors.push 'Выберите правильно пол!'
 
 			if errors.length

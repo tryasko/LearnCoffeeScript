@@ -3,5 +3,5 @@ define ['backbone', 'model/user'], ( Backbone, AppModelUser ) ->
 
 	#  Коллекция всех пользователей
 
-	Backbone.Collection.extend
+	class Collection extends Backbone.Collection
 		model : AppModelUser
