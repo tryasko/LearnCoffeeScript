@@ -16,6 +16,10 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
 
     View.prototype.id = 'userInfo';
 
+    View.prototype.initialize = function() {
+      return Backbone.Validation.bind(this);
+    };
+
     View.prototype.template = _.template($('#userInfoEditTemplate').html());
 
     View.prototype.render = function() {
@@ -34,7 +38,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
 
       newInfo = {
         name: this.$('.user-name').val(),
-        age: parseInt(this.$('.user-age').val(), 10),
+        age: this.$('.user-age').val(),
         job: this.$('.user-job').val(),
         sex: this.$('.user-sex').val()
       };
@@ -44,7 +48,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
       } else {
         this.model.set({
           name: newInfo.name,
-          age: newInfo.age,
+          age: parseInt(newInfo.age, 10),
           job: newInfo.job,
           sex: newInfo.sex
         });
@@ -53,11 +57,11 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
     };
 
     View.prototype.showErrorValidate = function(errors) {
-      var error, _i, _len, _results;
+      var error, key, _results;
 
       _results = [];
-      for (_i = 0, _len = errors.length; _i < _len; _i++) {
-        error = errors[_i];
+      for (key in errors) {
+        error = errors[key];
         _results.push(alert(error));
       }
       return _results;

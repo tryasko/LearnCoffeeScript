@@ -1,24 +1,48 @@
-define ['backbone'], ( Backbone ) ->
+define ['backbone', 'validator'], ( Backbone, Validator ) ->
 	'use strict'
 
 	class Model extends Backbone.Model
 		defaults :
 			sex : 'Мужской'
 
-		validate : ( attrs ) ->
-			errors = []
-
-			if not /^[А-Яа-я]{1,}$/.test attrs.name
-				errors.push 'Введите свое имя кириллицей!'
-
-			if attrs.age < 10 or attrs.age > 100
-				errors.push 'Введите цифрами Ваш реальный возраст!'
-
-			if not /^[А-Яа-я]{1,}$/.test attrs.job
-				errors.push 'Введите профессию кириллицей!'
-
-			if attrs.sex isnt 'Мужской' and attrs.sex isnt 'Женский'
-				errors.push 'Выберите правильно пол!'
-
-			if errors.length
-				errors
+		validation :
+			name : [
+				{
+					required : true
+					msg : 'Поле "Имя" не может быть пустым!'
+				}
+				{
+					pattern : /^[А-Яа-я]{1,}$/
+					msg : 'Введите свое имя кириллицей!'
+				}
+			]
+			age : [
+				{
+					required : true
+					msg : 'Поле "Возраст" не может быть пустым!'
+				}
+				{
+					range : [10, 100]
+					msg : 'Вы не можете быть младше 10 и старше 100 лет!'
+				}
+			]
+			job : [
+				{
+					required : true
+					msg : 'Поле "Работа" не может быть пустым'
+				}
+				{
+					pattern : /^[А-Яа-я]{1,}$/
+					msg : 'Введите профессию кириллицей!'
+				}
+			]
+			sex : [
+				{
+					required : true
+					msg : 'Поле "Пол" не может быть пустым'
+				}
+				{
+					oneOf : ['Мужской', 'Женский']
+					msg : 'Выберите правильно пол!'
+				}
+			]
